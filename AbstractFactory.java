@@ -34,3 +34,20 @@ class IOSButton implements Button{
     }
 }
 
+class AndroidButtonFactory implements ButtonFactory{
+
+    @Override
+    public Button createButton(){
+        return new AndroidButton();
+    }
+
+}
+class IOSButtonFactory implements ButtonFactory{
+
+    @Override
+    public Button createButton(){
+        return new IOSButton();
+    }
+
+}
+
