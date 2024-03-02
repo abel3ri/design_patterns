@@ -44,6 +44,12 @@ class JavaScriptPL extends ProgrammingLanguage{
 
 public class FactoryMethod {
     public static void main(String[] args) {
-        
+        PLFactory javaFactory = new JavaFactory();
+        ProgrammingLanguage javaPl = javaFactory.factoryMethod();
+        javaPl.display();
+
+        PLFactory javaScriptFactory = new JavaScriptFactory();
+        ProgrammingLanguage javaScriptPl = javaScriptFactory.factoryMethod();
+        javaScriptPl.display();
     }
 }
