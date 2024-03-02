@@ -11,6 +11,27 @@ class JavaPL extends ProgrammingLanguage{
     }
 }
 
+abstract class PLFactory{
+    abstract ProgrammingLanguage factoryMethod();
+}
+
+class JavaFactory extends PLFactory{
+
+    @Override
+    public ProgrammingLanguage factoryMethod(){
+        return new JavaPL();
+    }
+}
+
+
+class JavaScriptFactory extends PLFactory{
+
+    @Override
+    public ProgrammingLanguage factoryMethod(){
+        return new JavaScriptPL();
+    }
+}
+
 class JavaScriptPL extends ProgrammingLanguage{
 
     @Override
