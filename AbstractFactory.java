@@ -51,3 +51,23 @@ class IOSButtonFactory implements ButtonFactory{
 
 }
 
+/**
+ * AbstractFactory
+ */
+public class AbstractFactory {
+
+    public static void main(String[] args) {
+        AndroidButtonFactory androidButtonFactory = new AndroidButtonFactory();
+        Button androidButton = androidButtonFactory.createButton();
+
+        androidButton.render();
+        androidButton.onPressed();
+
+
+        IOSButtonFactory iosButtonFactory = new IOSButtonFactory();
+        Button iosButton = iosButtonFactory.createButton();
+        
+        iosButton.render();
+        androidButton.onPressed();
+    }
+}
