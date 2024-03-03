@@ -1,20 +1,20 @@
-import java.util.*;
-
-interface AbstractFactory{
-    Button createButton(String buttonType);
+interface ButtonFactory{
+    Button createButton();
 }
 
-class ButtonFactory implements AbstractFactory{
+class AndroidButtonFactory implements ButtonFactory{
 
     @Override
-    public Button createButton(String buttonType) {
-     
-        if(buttonType.equalsIgnoreCase("ios")){
-            return new IOSButton();
-        } else if(buttonType.equalsIgnoreCase("android")){
-            return new AndroidButton();
-        }
-        return null;
+    public Button createButton(){
+        return new AndroidButton();
+    }
+}
+
+class IOSButtonFactory implements ButtonFactory{
+
+    @Override
+    public Button createButton(){
+        return new IOSButton();
     }
 }
 
@@ -52,21 +52,17 @@ class IOSButton implements Button{
 }
 
 
-
-/**
- * AbstractFactory
- */
 public class AbstractFactoryPattern {
 
     public static void main(String[] args) {
-        AbstractFactory buttonFactory = new ButtonFactory();
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter the type of button to create(ios/ANDROID): ");
-        String buttonType = sc.nextLine();
+       ButtonFactory androidButtonFactory = new AndroidButtonFactory();
+       ButtonFactory iosButtonFactory = new IOSButtonFactory();
 
-        Button button = buttonFactory.createButton(buttonType);
-        System.out.println("Congratulations!");
-        button.render();
-        sc.close();
+       final Button androidButton = androidButtonFactory.createButton();
+       final Button iosButton = iosButtonFactory.createButton();
+
+
+       androidButton.render();
+       iosButton.render();
     }
 }
