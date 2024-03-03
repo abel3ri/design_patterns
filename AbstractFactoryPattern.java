@@ -1,68 +1,58 @@
-interface ButtonFactory{
-    Button createButton();
+interface AnimalFactory{
+    Animal createAnimal();
 }
 
-class AndroidButtonFactory implements ButtonFactory{
+class CatFactory implements AnimalFactory{
 
     @Override
-    public Button createButton(){
-        return new AndroidButton();
-    }
-}
-
-class IOSButtonFactory implements ButtonFactory{
-
-    @Override
-    public Button createButton(){
-        return new IOSButton();
+    public Animal createAnimal(){
+        return new Cat();
     }
 }
 
-
-interface Button{
-    void render();
-    void onPressed();
-}
-
-
-class AndroidButton implements Button{
+class DogFactory implements AnimalFactory{
 
     @Override
-    public void render(){
-        System.out.println("Android button rendered.");
-    }
-
-    @Override
-    public void onPressed(){
-        System.out.println("Android button pressed.");
+    public Animal createAnimal(){
+        return new Dog();
     }
 }
 
-class IOSButton implements Button{
+
+interface Animal{
+    void talk();
+}
+
+
+class Cat implements Animal{
 
     @Override
-    public void render(){
-        System.out.println("IOS button rendered.");
+    public void talk(){
+        System.out.println("Hello, I'm a cat.");
     }
+  
+}
+class Dog implements Animal{
 
     @Override
-    public void onPressed(){
-        System.out.println("IOS button pressed.");
+    public void talk(){
+        System.out.println("Hello, I'm a dog.");
     }
+  
 }
 
 
 public class AbstractFactoryPattern {
 
     public static void main(String[] args) {
-       ButtonFactory androidButtonFactory = new AndroidButtonFactory();
-       ButtonFactory iosButtonFactory = new IOSButtonFactory();
+       AnimalFactory catFactory = new CatFactory();
+       AnimalFactory dogFactory = new DogFactory();
 
-       final Button androidButton = androidButtonFactory.createButton();
-       final Button iosButton = iosButtonFactory.createButton();
+       final Animal cat = catFactory.createAnimal();
+       final Animal dog = dogFactory.createAnimal();
 
 
-       androidButton.render();
-       iosButton.render();
+       cat.talk();
+       dog.talk();
     }
 }

@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 abstract class Factory{
+    // factory method
     abstract Animal createAnimal(String name);
 }
 
