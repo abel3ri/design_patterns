@@ -1,55 +1,54 @@
-abstract class ProgrammingLanguage{
-    public abstract void display();
+import java.util.Scanner;
+
+abstract class Factory{
+    abstract Animal createAnimal(String name);
 }
 
 
-class JavaPL extends ProgrammingLanguage{
+class AnimalFactory extends Factory{
 
     @Override
-    public void display(){
-        System.out.println("This is Java programming language.");
-    }
-}
-
-abstract class PLFactory{
-    abstract ProgrammingLanguage factoryMethod();
-}
-
-class JavaFactory extends PLFactory{
-
-    @Override
-    public ProgrammingLanguage factoryMethod(){
-        return new JavaPL();
+    public Animal createAnimal(String name){
+        if(name.equalsIgnoreCase("cat")) return new Cat();
+        else if(name.equalsIgnoreCase("dog")) return new Dog();
+        return null;
     }
 }
 
 
-class JavaScriptFactory extends PLFactory{
+abstract class Animal{
+    abstract void talk();
+}
+
+
+class Cat extends Animal{
 
     @Override
-    public ProgrammingLanguage factoryMethod(){
-        return new JavaScriptPL();
+    void talk() {
+        System.err.println("Hello, I'm a cat.");
     }
 }
 
-class JavaScriptPL extends ProgrammingLanguage{
+class Dog extends Animal{
 
     @Override
-    public void display(){
-        System.out.println("This is JavaScript programming language.");
+    void talk() {
+        System.err.println("Hello, I'm a dog.");
     }
 }
-
 
 
 public class FactoryMethod {
-    public static void main(String[] args) {
-        PLFactory javaFactory = new JavaFactory();
-        ProgrammingLanguage javaPl = javaFactory.factoryMethod();
-        javaPl.display();
 
-        PLFactory javaScriptFactory = new JavaScriptFactory();
-        ProgrammingLanguage javaScriptPl = javaScriptFactory.factoryMethod();
-        javaScriptPl.display();
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Factory animalFactory = new AnimalFactory();
+
+        System.err.print("What kind of animal to create?(cat/DOG): ");
+        String animalName = sc.nextLine();
+        Animal animal = animalFactory.createAnimal(animalName);
+        animal.talk();
+
+        sc.close();
     }
 }
